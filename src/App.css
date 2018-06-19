@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 200px;
+}
+
+.App-header {
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.Navbar {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  -webkit-padding-start: 0%;
+  padding-top: 10px;
+}
+
+#navLi { 
+  font-family: 'Poiret One', cursive;
+  color: #666;
+  display:inline-block; 
+  margin:0;
+  text-transform:uppercase; 
+  font-size: 1.5vw;
+}
+
+#navLi:after {
+  display:block;
+  content: '';
+  border-top: solid .5px black;  
+  transform: scaleX(1);  
+  transition: transform 250ms ease-in-out;
+}
+
+#navLi:hover:after { transform: scaleX(2); }
