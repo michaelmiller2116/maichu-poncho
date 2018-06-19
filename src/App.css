@@ -3,8 +3,7 @@
 }
 
 .App-logo {
-  /* animation: App-logo-spin infinite 20s linear; */
-  height: 200px;
+  height: 175px;
 }
 
 .App-header {
@@ -32,6 +31,8 @@
   justify-content: space-around;
   -webkit-padding-start: 0%;
   padding-top: 10px;
+  padding-right: 20vw;
+  padding-left: 20vw;
 }
 
 #navLi { 
@@ -47,8 +48,18 @@
   display:block;
   content: '';
   border-top: solid .5px black;  
-  transform: scaleX(1);  
+  transform: scaleX(0);  
   transition: transform 250ms ease-in-out;
 }
 
-#navLi:hover:after { transform: scaleX(2); }
+#navLi:hover:after { transform: scaleX(1.25); }
+
+.hero-img {
+  width: 100vw;
+  height: 50vh;
+}
+
+h1, h3 {
+  font-family: 'Poiret One', cursive;
+  color: #666;
+}
