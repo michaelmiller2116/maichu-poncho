@@ -65,16 +65,18 @@ h1, h3 {
 }
 
 .grid {
-      display: grid;
-      /* grid-template-columns: 1fr 2fr 1fr; */
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 1em;
-      /* grid-auto-rows: 100px; */
-      grid-auto-rows: minmax(300px, auto);
-    }
+  display: grid;
+  justify-items: center;
+  /* grid-template-columns: 1fr 2fr 1fr; */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  /* grid-auto-rows: 100px; */
+  grid-auto-rows: minmax(300px, auto);
+}
 
 .img-card {
-  display: flex; 
+  display: flex;
+  align-self: center; 
   flex-direction: row; 
   max-height: 500px; 
   max-width: 300px; 

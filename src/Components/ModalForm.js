@@ -1,9 +1,25 @@
-import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import React from "react"
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap"
+import StripeCheckout from "react-stripe-checkout";
+
 
 export default class ModalForm extends React.Component {
+
+  onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`);
+      })
+    }) 
+  }
+
   render() {
-    return <Form>
+    return (
+      <React.Fragment>
+      <Form>
         <FormGroup>
           <Label for="exampleEmail">First Name</Label>
           <Input type="text" name="firstName" id="firstName" />
@@ -35,6 +51,9 @@ export default class ModalForm extends React.Component {
           <Input type="address" name="zip" id="zip" placeholder="zip code" />
         </FormGroup>
         <Button>Submit</Button>
-      </Form>;
+        </Form>
+        <StripeCheckout token={this.onToken} stripeKey="pk_test_3cyEFT9tQLPqRl38kdaNt4HE" />
+        </React.Fragment>
+    )
   }
 }

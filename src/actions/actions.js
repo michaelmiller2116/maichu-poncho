@@ -1,4 +1,4 @@
-const brandURL = "http://localhost:5000/brands"
+const cartURL = "http://localhost:5000/cart"
 const ponchoURL = "http://localhost:5000/ponchos"
 
 
@@ -13,8 +13,6 @@ exports.deletePoncho = (id) => {
     method: "delete"
   }).then(data => data.text())
 }
-
-
 
 exports.addPoncho = (formData) => {
   return fetch(ponchoURL, {

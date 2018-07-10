@@ -45,9 +45,9 @@ class PonchoList extends Component {
   
   render() {
     const ponchos = this.state.data.map(poncho => {
-      return <Card key={poncho.id} className="img-card">
+      return <Card key={poncho.id} className="img-card border-white">
           <CardImg src={poncho.image} onClick={this.toggle} alt="poncho" />
-          <CardBody>
+          <CardBody className='text-left'>
             <CardSubtitle>Card subtitle</CardSubtitle>
             <CardText>{poncho.description}</CardText>
             <Button onClick={this.handleDelete.bind(this, poncho)}>
