@@ -1,59 +1,54 @@
 import React from "react"
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap"
-import StripeCheckout from "react-stripe-checkout";
+import { addCartItem } from "../actions/actions"
+import StripeCheckout from "react-stripe-checkout"
 
 
 export default class ModalForm extends React.Component {
-
-  onToken = (token) => {
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      })
-    }) 
+  constructor (props) {
+    super (props)
+      const ponchoData = this.props.ponchoData
+      console.log(ponchoData, 'here')
+      this.state = {
+        image: ponchoData.image,
+        name: ponchoData.name,
+        price: ponchoData.price,
+        description: ponchoData.description,
+        qty: 0
+      }
   }
 
-  render() {
+  handleChange = (e) => {
+    this.setState({qty: parseInt(e.target.value)})
+  }
+
+  handleSubmit = (e) => {
+    console.log('====================================');
+    console.log(this.props.toggleState);
+    console.log('====================================');
+    e.preventDefault()
+    addCartItem(JSON.stringify(this.state))
+    this.props.toggleState()
+  }
+  
+  render() {   
     return (
       <React.Fragment>
-      <Form>
-        <FormGroup>
-          <Label for="exampleEmail">First Name</Label>
-          <Input type="text" name="firstName" id="firstName" />
-          <Label for="lastName">Last Name</Label>
-          <Input type="text" name="lastName" id="lastName" />
-          <Label for="email">Email</Label>
-          <Input type="email" name="email" id="email" placeholder="enter a vaild email" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="quantity">Qty.</Label>
-          <Input type="select" name="quantity" id="quantity">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="address1">Address line 1</Label>
-          <Input type="address" name="address1" id="address1" placeholder="address line 1" />
-          <Label for="address2">Address line 2</Label>
-          <Input type="address" name="address2" id="address2" placeholder="address line 2" />
-          <Label for="city">City/Town</Label>
-          <Input type="address" name="city" id="city" placeholder="city/town" />
-          <Label for="state">State</Label>
-          <Input type="address" name="state" id="state" placeholder="state" />
-          <Label for="zip">Zip Code</Label>
-          <Input type="address" name="zip" id="zip" placeholder="zip code" />
-        </FormGroup>
-        <Button>Submit</Button>
+        <img style={{maxHeight: '100%', maxWidth: '80%'}}  alt=""/>
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup>
+            <Label for="quantity">Qty.</Label>
+            <Input value={this.state.qty} onChange={this.handleChange} type="select" name="quantity" id="quantity">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </Input>
+          </FormGroup>
+          <Button>Submit</Button>
         </Form>
-        <StripeCheckout token={this.onToken} stripeKey="pk_test_3cyEFT9tQLPqRl38kdaNt4HE" />
-        </React.Fragment>
+      </React.Fragment>
     )
   }
 }

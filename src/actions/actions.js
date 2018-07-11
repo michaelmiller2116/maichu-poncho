@@ -14,12 +14,19 @@ exports.deletePoncho = (id) => {
   }).then(data => data.text())
 }
 
-exports.addPoncho = (formData) => {
-  return fetch(ponchoURL, {
+exports.addCartItem = (formData) => {
+  return fetch(cartURL, {
     method: "post",
     body: formData,
     headers: ({'content-type': 'application/json'})
   }).catch(err => console.log(err))
 }
+
+exports.getCart = () => {
+  return fetch(cartURL)
+    .then(res => res.json())
+    .catch(err => console.log(err));
+};
+
 
 

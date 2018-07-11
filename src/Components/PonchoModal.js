@@ -7,12 +7,13 @@ class AddModal extends React.Component {
 
 
   render() {
+    const ponchoListState = this.props.passedState
     return (
       <div>
-        <Modal isOpen={this.props.passState}>
-          <ModalHeader>Modal title</ModalHeader>
+        <Modal style={{textAlign: 'center'}} isOpen={ponchoListState.ponchoModal}>
+          <ModalHeader>{ponchoListState.clickedPoncho[0].name}</ModalHeader>
           <ModalBody>
-           <ModalForm />
+           <ModalForm ponchoData={ponchoListState.clickedPoncho[0]} toggleState={this.props.toggleState}/>
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.props.toggleState}>
@@ -21,7 +22,7 @@ class AddModal extends React.Component {
           </ModalFooter>
         </Modal>
       </div>
-    );
+    )
   }
 }
 

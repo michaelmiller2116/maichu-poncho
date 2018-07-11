@@ -4,7 +4,9 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import AddModal from "./AddModal.js";
+import PonchoModal from "./PonchoModal";
+import CartModal from "./CartModal";
+import Navbar from "./Navbar";
 import "../App.css";
 
 
@@ -16,7 +18,9 @@ class PonchoList extends Component {
     super(props)
     this.state = {
       data: [],
-      modal: false
+      ponchoModal: false,
+      cartModal: false,
+      clickedPoncho: ''
     }
   }
 
@@ -26,9 +30,21 @@ class PonchoList extends Component {
     })
   }
 
-  toggle = () => {
+  togglePonchoModal = (e) => {
+    let clickedPoncho
+    if (e) {
+      const id = parseInt(e.target.id)
+      clickedPoncho = this.state.data.filter(poncho => poncho.id === id)
+    }
     this.setState({
-      modal: !this.state.modal
+      ponchoModal: !this.state.ponchoModal,
+      clickedPoncho: clickedPoncho
+    })
+  }
+
+  toggleCartModal = (e) => {
+    this.setState({
+      cartModal: !this.state.cartModal
     });
   }
 
@@ -41,33 +57,41 @@ class PonchoList extends Component {
     this.setState({
       data: ponchos
     })
-  } 
+  }
+  
+  sendPonchoById(id) {
+
+  }
   
   render() {
-    const ponchos = this.state.data.map(poncho => {
-      return <Card key={poncho.id} className="img-card border-white">
-          <CardImg src={poncho.image} onClick={this.toggle} alt="poncho" />
-          <CardBody className='text-left'>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>{poncho.description}</CardText>
-            <Button onClick={this.handleDelete.bind(this, poncho)}>
-              Delete Poncho
-            </Button>
-            {this.state.modal ? <AddModal passState={this.state.modal} toggleState={this.toggle}/> : null}
-          </CardBody>
-        </Card>;
+  const ponchos = this.state.data.map((poncho, index) => {
+    return <Card key={poncho.id} className="img-card border-white">
+        <CardImg id={poncho.id} onClick={this.togglePonchoModal} src={poncho.image} alt="poncho" />
+        <CardBody className="text-left">
+          <CardSubtitle>{poncho.name}</CardSubtitle>
+          <CardText>{poncho.description}</CardText>
+          <Button onClick={this.handleDelete.bind(this, poncho)}>
+            Delete Poncho
+          </Button>
+        </CardBody>
+      </Card>;
   })
-    
+
+  
     return (
-      <div className='grid'>
-         {ponchos}
-      </div>
+      <React.Fragment>
+        <Navbar toggleState={this.toggleCartModal} />
+        <div className='grid'>
+          {ponchos}
+
+          {this.state.ponchoModal ? <PonchoModal passedState={this.state} toggleState={this.togglePonchoModal} /> : null}
+
+          {this.state.cartModal ? <CartModal passedState={this.state} toggleState={this.toggleCartModal} /> : null}
+        </div>
+      </React.Fragment>
     )
   }
 }
-
-
-
 
 export default PonchoList
 

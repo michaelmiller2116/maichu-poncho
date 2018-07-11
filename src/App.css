@@ -80,4 +80,5 @@ h1, h3 {
   flex-direction: row; 
   max-height: 500px; 
   max-width: 300px; 
+  margin-top: 10vh;
 }
