@@ -7,22 +7,7 @@
 }
 
 .App-header {
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  text-align: center;
 }
 
 .Navbar {
@@ -42,6 +27,7 @@
   margin:0;
   text-transform:uppercase; 
   font-size: 1.5vw;
+  cursor: pointer;
 }
 
 #navLi:after {
@@ -52,7 +38,9 @@
   transition: transform 250ms ease-in-out;
 }
 
-#navLi:hover:after { transform: scaleX(1.25); }
+#navLi:hover:after { 
+  transform: scaleX(1.25);
+}
 
 .hero-img {
   width: 100vw;
@@ -67,10 +55,8 @@ h1, h3 {
 .grid {
   display: grid;
   justify-items: center;
-  /* grid-template-columns: 1fr 2fr 1fr; */
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
-  /* grid-auto-rows: 100px; */
   grid-auto-rows: minmax(300px, auto);
 }
 
@@ -81,4 +67,8 @@ h1, h3 {
   max-height: 500px; 
   max-width: 300px; 
   margin-top: 10vh;
+}
+
+.card-image {
+  cursor: pointer;
 }
