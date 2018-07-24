@@ -1,5 +1,5 @@
-const cartURL = "http://localhost:5000/cart"
-const ponchoURL = "http://localhost:5000/ponchos"
+const cartURL = "https://maichu-server.herokuapp.com/cart";
+const ponchoURL = "https://maichu-server.herokuapp.com/ponchos";
 
 
 exports.getPonchos = () => {
