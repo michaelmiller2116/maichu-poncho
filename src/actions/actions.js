@@ -1,6 +1,5 @@
-const cartURL = "https://maichu-server.herokuapp.com/cart";
-const ponchoURL = "https://maichu-server.herokuapp.com/ponchos";
-
+const cartURL = 'https://maichu-server.herokuapp.com/cart'
+const ponchoURL = 'https://maichu-server.herokuapp.com/ponchos'
 
 exports.getPonchos = () => {
   return fetch(ponchoURL)
@@ -11,24 +10,24 @@ exports.getPonchos = () => {
 exports.getCart = () => {
   return fetch(cartURL)
     .then(res => res.json())
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 }
 
 exports.deletePoncho = (id) => {
   return fetch(`${ponchoURL}/${id}`, {
-    method: "delete"
+    method: 'delete'
   }).then(data => data.text())
 }
 
 exports.deleteItem = id => {
   return fetch(`${cartURL}/${id}`, {
-    method: "delete"
-  }).then(data => data.text());
+    method: 'delete'
+  }).then(data => data.text())
 }
 
 exports.addCartItem = (formData) => {
   return fetch(cartURL, {
-    method: "post",
+    method: 'post',
     body: formData,
     headers: ({'content-type': 'application/json'})
   }).catch(err => console.log(err))

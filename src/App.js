@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import {
   Card, CardImg, CardText, CardBody, CardSubtitle
-} from 'reactstrap';
+} from 'reactstrap'
 import { getPonchos, deletePoncho } from './actions/actions'
-import PonchoModal from "./Components/PonchoModal";
-import CartModal from "./Components/CartModal";
-import Navbar from "./Components/Navbar";
-import Header from "./Components/Header";
-import AddPoncho from "./Components/AddPoncho";
-import "./App.css";
-
+import PonchoModal from './Components/PonchoModal'
+import CartModal from './Components/CartModal'
+import Navbar from './Components/Navbar'
+import Header from './Components/Header'
+import AddPoncho from './Components/AddPoncho'
+import './App.css'
 
 let ponchoObject = getPonchos()
-
 
 class PonchoList extends Component {
   constructor(props) {
@@ -44,13 +42,13 @@ class PonchoList extends Component {
     })
   }
 
-  toggleAddPonchoModal = (e) => {
+  toggleAddPonchoModal = () => {
     this.setState({
       addPonchoModal: !this.state.addPonchoModal
     })
   }
 
-  toggleCartModal = (e) => {
+  toggleCartModal = () => {
     this.setState({
       cartModal: !this.state.cartModal
     })
@@ -68,26 +66,26 @@ class PonchoList extends Component {
   }
   
   render() {
-  const ponchos = this.state.data.map((poncho, index) => {
-    return (
-      <li style={{listStyleType: 'none'}}key={poncho.id}>
-        <Card key={poncho.id} className="img-card border-white">
-          <CardImg className='card-image' id={poncho.id} onClick={this.togglePonchosModal} src={poncho.image} alt="poncho" />
-          <CardBody className="text-left">
-            <CardSubtitle><strong>{poncho.name}</strong></CardSubtitle>
-            <CardText>${poncho.price}.00</CardText>
-          </CardBody>
-        </Card>
-      </li>
-    )
-  })
+    const ponchos = this.state.data.map((poncho, index) => {
+      return (
+        <li style={{listStyleType: 'none'}}key={poncho.id}>
+          <Card key={poncho.id} className='img-card border-white'>
+            <CardImg className='card-image' id={poncho.id} onClick={this.togglePonchosModal} src={poncho.image} alt='poncho' />
+            <CardBody className='text-left'>
+              <CardSubtitle><strong>{poncho.name}</strong></CardSubtitle>
+              <CardText>${poncho.price}.00</CardText>
+            </CardBody>
+          </Card>
+        </li>
+      )
+    })
 
     return (
-      <div className="app">
-        <img className="hero-img" src="assets/store-front.jpg" alt="store front" />
+      <div className='app'>
+        <img className='hero-img' src='assets/store-front.jpg' alt='store front' />
         <Header />
         <Navbar toggleCartModal={this.toggleCartModal} toggleAddPonchoModal={this.toggleAddPonchoModal}/>
-        <ul className="grid">
+        <ul className='grid'>
           {ponchos}
 
           {this.state.ponchosModal ? <PonchoModal passedState={this.state} toggleState={this.togglePonchosModal} /> : null}

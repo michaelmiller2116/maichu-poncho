@@ -1,7 +1,6 @@
-import React from "react"
-import { Button, Form, FormGroup, Label, Input} from "reactstrap"
-import { addCartItem } from "../actions/actions"
-
+import React from 'react'
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import { addCartItem } from '../actions/actions'
 
 export default class ModalForm extends React.Component {
   constructor (props) {
@@ -27,12 +26,13 @@ export default class ModalForm extends React.Component {
   }
   
   render() {   
-    return <React.Fragment>
-        <img style={{ maxHeight: "100%", maxWidth: "80%" }} alt="" />
+    return (
+      <React.Fragment>
+        <img style={{ maxHeight: '100%', maxWidth: '80%' }} alt='' />
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label for="quantity">Qty.</Label>
-            <Input value={this.state.qty} onChange={this.handleChange} type="select" name="quantity" id="quantity">
+            <Label for='quantity'>Qty.</Label>
+            <Input value={this.state.qty} onChange={this.handleChange} type='select' name='quantity' id='quantity'>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -48,6 +48,7 @@ export default class ModalForm extends React.Component {
             Cancel
           </Button>
         </Form>
-      </React.Fragment>;
+      </React.Fragment>
+    )
   }
 }
